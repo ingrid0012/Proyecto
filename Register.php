@@ -12,7 +12,7 @@
     mysqli_stmt_execute($statement);
     
     $response = array();
-    $response["success"] = true;  
+    $response["exito"] = true;  
     
     echo json_encode($response);
 ?>
