@@ -1,15 +1,15 @@
 <?php
-    $con = mysqli_connect("mysql10.000webhost.com", "a3288368_user", "abcd1234", "a3288368_data");
+    $con = mysqli_connect("proyectodegrado.000webhostapp.com", "id61184_proyecto", "12345678", "id61184_miproyecto");
     
     $username = $_POST["username"];
     $password = $_POST["password"];
     
-    $statement = mysqli_prepare($con, "SELECT * FROM user WHERE username = ? AND password = ?");
+    $statement = mysqli_prepare($con, "SELECT * FROM usuario WHERE usuario = ? AND contrasena = ?");
     mysqli_stmt_bind_param($statement, "ss", $username, $password);
     mysqli_stmt_execute($statement);
     
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $userID, $name, $age, $username, $password);
+    mysqli_stmt_bind_result($statement, $userID, $name, $age, $username, $password,$correo);
     
     $response = array();
     $response["success"] = false;  
@@ -20,6 +20,7 @@
         $response["age"] = $age;
         $response["username"] = $username;
         $response["password"] = $password;
+        $response["correo"] = $correo;
     }
     
     echo json_encode($response);
